@@ -1,20 +1,28 @@
 public class AlgoritmoTrinta {
-    public void main() {
+    public static void main(String[] args) {
         int numero = Integer.parseInt(IO.readln("Digite um número: "));
 
-        long[] etapas = new long[numero];
-        long resultados = 1;
+        long[] vetor = new long[numero - 1];
+        long resultadoAtual = numero;
 
-        for (int i = 1; i <= numero; i++) {
-            resultados = resultados * i;
-            etapas[i - 1] = resultados;
+        System.out.println("Passo a passo:");
+
+        for (int i = 0; i < numero - 1; i++) {
+            int proximoMultiplicador = numero - 1 - i;
+            long proximoResultado = resultadoAtual * proximoMultiplicador;
+
+         
+            System.out.println(resultadoAtual + " * " + proximoMultiplicador + " = " + proximoResultado);
+    
+            vetor[i] = proximoResultado;
+            resultadoAtual = proximoResultado;
         }
 
-        System.out.println("Etapas (cálculos parciais):");
-        for (int i = 0; i < etapas.length; i++) {
-            System.out.println("Passo " + (i + 1) + ": " + etapas[i]);
+        System.out.println("\nValores armazenados no vetor:");
+        for (int i = 0; i < vetor.length; i++) {
+            System.out.println("vetor[" + i + "] = " + vetor[i]);
         }
 
-        System.out.println("Resultado final: " + resultados);
+        System.out.println("\nResultado final: " + resultadoAtual);
     }
 }
